@@ -34,6 +34,7 @@ jobs:
           PAT: ${{ secrets.PAT }}
         run: |
           git clone https://github.com/divkumarsingh/gitops.git
+          cd gitops
 
           sed -i 's|image: divyanshukumarsingh/next_todo:*| divyanshukumarsingh/next_todo:${{ github.sha }}|' deployment.yml
 
