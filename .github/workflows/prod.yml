@@ -28,3 +28,17 @@ jobs:
           file: Dockerfile
           push: true
           tags: divyanshukumarsingh/next_todo:${{ github.sha }}
+
+      - name: Clone repo, update image tags, and push tags
+        env:
+          PAT: ${{ secrets.PAT }}
+        run: |
+          git clone https://github.com/divkumarsingh/gitops.git
+
+          sed -i 's|image: divyanshukumarsingh/next_todo:*| divyanshukumarsingh/next_todo:${{ github.sha }}|' manifest.yml
+
+          git config user.name "GitHub Action Bot"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Updated the todo_server image to ${{ github.sha }}"
+          git push https://${PAT}@github.com/divkumarsingh/gitops.git
