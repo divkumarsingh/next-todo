@@ -35,7 +35,7 @@ jobs:
         run: |
           git clone https://github.com/divkumarsingh/gitops.git
 
-          sed -i 's|image: divyanshukumarsingh/next_todo:*| divyanshukumarsingh/next_todo:${{ github.sha }}|' manifest.yml
+          sed -i 's|image: divyanshukumarsingh/next_todo:*| divyanshukumarsingh/next_todo:${{ github.sha }}|' deployment.yml
 
           git config user.name "GitHub Action Bot"
           git config user.email "actions@github.com"
